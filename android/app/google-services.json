@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "750846452590",
+    "firebase_url": "https://rehabis-3cefc-default-rtdb.firebaseio.com",
+    "project_id": "rehabis-3cefc",
+    "storage_bucket": "rehabis-3cefc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:750846452590:android:69ec3145e8a449f28e577f",
+        "android_client_info": {
+          "package_name": "com.undercover.rehabis"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "750846452590-cu3tad8lhmqljfrcpbnubcruc8b24lbs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.undercover.rehabis",
+            "certificate_hash": "b93450c35ae5d7f409a62a607294743db7b8e1de"
+          }
+        },
+        {
+          "client_id": "750846452590-1ovvkcl1elkdfistgtfgb14130tblo50.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyArv5PsUOAxR7MygyjuzuISB3IOYIagQdQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "750846452590-1ovvkcl1elkdfistgtfgb14130tblo50.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
