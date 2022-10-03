@@ -19,7 +19,7 @@ Set<Relative> relatives = {};
 
 /// Medical data ///
 String bornDateGlobal = "";
-String genderGlobal = "male";
+String genderGlobal = "";
 String strokeTypeGlobal = "";
 int heightGlobal = 0;
 int weightGlobal = 0;

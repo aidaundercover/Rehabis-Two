@@ -14,15 +14,21 @@ import 'package:rehabis/views/main/profile.dart';
 import 'package:rehabis/views/main/voice.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 
+List<CameraDescription> cameras = [];
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp();
   FlutterError.onError = (FlutterErrorDetails details) {
     FlutterError.dumpErrorToConsole(details);
     if (kReleaseMode) exit(1);
   };
 
-  runApp(MyApp());
+  try {
+    cameras = await availableCameras();
+  } catch (e) {}
+
+  runApp(const MyApp());
 }
 
 late CameraDescription cameraDescription;
@@ -34,16 +40,16 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
-    GlobalKey<ScaffoldMessengerState>();
+// GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+//     GlobalKey<ScaffoldMessengerState>();
+
 FaceNetService _faceNetService = FaceNetService.faceNetService;
 MLKitService _mlKitService = MLKitService();
+bool loading = false;
 
 class _MyAppState extends State<MyApp> {
 
-
-  bool loading = false;
-
+  @override
   void initState() {
     super.initState();
 
@@ -66,16 +72,14 @@ class _MyAppState extends State<MyApp> {
             color: secondPrimaryColor,
           );
   }
-
-
 }
 
-
-
 void startup() async {
-  // _setLoading(true);
+  _setLoading(bool l) {
+    loading = l;
+  }
 
-  List<CameraDescription> cameras = await availableCameras();
+  _setLoading(true);
 
   /// takes the front camera
   cameraDescription = cameras.firstWhere(
@@ -88,7 +92,7 @@ void startup() async {
   //  await _dataBaseService.loadDB();
   _mlKitService.initialize();
 
-  // _setLoading(false);
+  _setLoading(false);
 }
 
 class Main extends StatefulWidget {

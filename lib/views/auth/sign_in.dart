@@ -6,7 +6,6 @@ import 'package:rehabis/main.dart';
 import 'package:rehabis/services/camera_service.dart';
 import 'package:rehabis/services/facenet_service.dart';
 import 'package:rehabis/services/ml_kit_service.dart';
-import 'package:rehabis/views/auth/sign_up.dart';
 import 'package:rehabis/widgets/FacePainter.dart';
 import 'package:rehabis/widgets/auth_action_button.dart';
 import 'package:rehabis/widgets/camera_header.dart';
@@ -29,9 +28,9 @@ class SignIn extends StatefulWidget {
 }
 
 class SignInState extends State<SignIn> {
-  CameraService _cameraService = CameraService();
-  MLKitService _mlKitService = MLKitService();
-  FaceNetService _faceNetService = FaceNetService.faceNetService;
+  final CameraService _cameraService = CameraService();
+  final MLKitService _mlKitService = MLKitService();
+  final FaceNetService _faceNetService = FaceNetService.faceNetService;
   GlobalKey key = GlobalKey<SignInState>();
 
   late Future _initializeControllerFuture;

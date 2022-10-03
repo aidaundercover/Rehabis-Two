@@ -221,7 +221,7 @@ class _TestForPredictionState extends State<TestForPrediction> {
                 const SizedBox(
                   height: 18,
                 ),
-                Container(
+                  genderGlobal.isEmpty ? Container(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -313,7 +313,7 @@ class _TestForPredictionState extends State<TestForPrediction> {
                       ),
                     ],
                   ),
-                ),
+                ) : Container(),
 
                 Text("Age", style: titleStyle),
                 const SizedBox(
@@ -697,7 +697,8 @@ class _TestForPredictionState extends State<TestForPrediction> {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
+                 heightGlobal == 0 && weightGlobal == 0
+                    ? Row(
                   children: [
                     Text("You can calculate your BMI ",
                         style: TextStyle(fontSize: 13, color: Colors.grey)),
@@ -712,7 +713,7 @@ class _TestForPredictionState extends State<TestForPrediction> {
                           )),
                     )
                   ],
-                ),
+                ) : Container(),
                 const SizedBox(
                   height: 70,
                 ),
@@ -847,7 +848,7 @@ class _TestForPredictionState extends State<TestForPrediction> {
 Future predict(BuildContext context) async {
   if (genderGlobal == "none") {
     Fluttertoast.showToast(msg: "Gender wasn't chosen!");
-  } else if (bp.text.isEmpty) {
+  } else if (bp.text.isEmpty && bmiGlobal==0) {
     Fluttertoast.showToast(msg: "Arterial BP wasn't folled in!");
   } else if (isSmoker == "unknown") {
     Fluttertoast.showToast(msg: "Smoking status wasn't filled in!");
