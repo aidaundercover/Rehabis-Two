@@ -43,7 +43,6 @@ class _SelectWeaknessState extends State<SelectWeakness> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    
 
     return Scaffold(
       backgroundColor: backgroundColor,
@@ -56,6 +55,7 @@ class _SelectWeaknessState extends State<SelectWeakness> {
               }
             }
           });
+          print(selectedWeakneases);
           Navigator.of(context)
               .push(MaterialPageRoute(builder: (context) => AddDataView()));
         },
@@ -85,82 +85,84 @@ class _SelectWeaknessState extends State<SelectWeakness> {
         ),
       ),
       body: SingleChildScrollView(
-          child: 
-            Center(
-              child: SizedBox(
-                width: width * 0.86,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                  slider(1, width),
-                  Container(
-                    width: width * 0.8,
-                    height: 50,
-                    alignment: MediaQuery.of(context).orientation == Orientation.portrait ? Alignment.centerLeft : Alignment.center,
-                    child: Text(
-                      "Select your weak points",
-                      textAlign: MediaQuery.of(context).orientation == Orientation.portrait ? TextAlign.start : TextAlign.center,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30,
-                          fontFamily: "Ruberoid",
-                          color: Color.fromARGB(255, 50, 50, 50)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: height*1.1,
-                      child: ListView.builder(
-                          itemCount: _selected.length,
-                          scrollDirection: Axis.vertical,
-                          shrinkWrap: true,
-                          itemBuilder: (BuildContext context, int index) =>
-                              GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                        _selected[index]["selected"] =
-                                            !_selected[index]["selected"];
-                                      });
-                                },
-                                child : Padding(
-                                  padding: const EdgeInsets.only(bottom : 1.0),
-                                  child: Container(
-                                  height: 70,
-                                  margin: EdgeInsets.only(bottom: 10),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(12),
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: _selected[index]["selected"]
-                                                ? Colors.black.withOpacity(0.15)
-                                                : Colors.black.withOpacity(0.07),
-                                            offset: Offset(4, 3),
-                                            blurRadius: 10)
-                                      ]),
-                                  alignment: Alignment.center,
-                                  child: ListTile(
-                                    title: Padding(
-                                      padding: EdgeInsets.only(left: width * 0.03),
-                                      child: Text(_selected[index]["title"]),
-                                    ),
-                                    trailing: _selected[index]["selected"]
-                                          ? Icon(
-                                              Icons.check_circle,
-                                              color: primaryColor,
-                                            )
-                                          : Icon(Icons.circle_outlined),
-                                  
-                                  ),
-                              ),
-                                ))),
-                 
+        child: Center(
+          child: SizedBox(
+            width: width * 0.86,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+              slider(1, width),
+              Container(
+                width: width * 0.8,
+                height: 50,
+                alignment:
+                    MediaQuery.of(context).orientation == Orientation.portrait
+                        ? Alignment.centerLeft
+                        : Alignment.center,
+                child: Text(
+                  "Select your weak points",
+                  textAlign:
+                      MediaQuery.of(context).orientation == Orientation.portrait
+                          ? TextAlign.start
+                          : TextAlign.center,
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 30,
+                      fontFamily: "Ruberoid",
+                      color: Color.fromARGB(255, 50, 50, 50)),
                 ),
-                SizedBox(height: 50)
-               ] ),
-          
-        ),
-            ),
+              ),
+              SizedBox(
+                height: height * 1.1,
+                child: ListView.builder(
+                    itemCount: _selected.length,
+                    scrollDirection: Axis.vertical,
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) =>
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                _selected[index]["selected"] =
+                                    !_selected[index]["selected"];
+                              });
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.only(bottom: 1.0),
+                              child: Container(
+                                height: 70,
+                                margin: EdgeInsets.only(bottom: 10),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(12),
+                                    boxShadow: [
+                                      BoxShadow(
+                                          color: _selected[index]["selected"]
+                                              ? Colors.black.withOpacity(0.15)
+                                              : Colors.black.withOpacity(0.07),
+                                          offset: Offset(4, 3),
+                                          blurRadius: 10)
+                                    ]),
+                                alignment: Alignment.center,
+                                child: ListTile(
+                                  title: Padding(
+                                    padding:
+                                        EdgeInsets.only(left: width * 0.03),
+                                    child: Text(_selected[index]["title"]),
+                                  ),
+                                  trailing: _selected[index]["selected"]
+                                      ? Icon(
+                                          Icons.check_circle,
+                                          color: primaryColor,
+                                        )
+                                      : Icon(Icons.circle_outlined),
+                                ),
+                              ),
+                            ))),
+              ),
+              SizedBox(height: 50)
+            ]),
           ),
-      );
+        ),
+      ),
+    );
   }
 }

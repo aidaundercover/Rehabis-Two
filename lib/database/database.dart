@@ -5,14 +5,14 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
-  static final _databaseName = "MyDatabase.db";
-  static final _databaseVersion = 1;
+  static const _databaseName = "MyDatabase.db";
+  static const _databaseVersion = 1;
 
-  static final table = 'users';
-  static final columnId = 'id';
-  static final columnIin = 'iin';
-  static final columnName = 'name';
-  static final columnModelData = 'model_data';
+  static const table = 'users';
+  static const columnId = 'id';
+  static const columnIin = 'iin';
+  static const columnName = 'name';
+  static const columnModelData = 'model_data';
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -44,6 +44,7 @@ class DatabaseHelper {
 
   Future<int> insert(User user) async {
     Database db = await instance.database;
+    // ignore: avoid_print
     print("tableinsertData====${user.toMap()}");
     return await db.insert(table, user.toMap());
   }
@@ -53,12 +54,15 @@ class DatabaseHelper {
     List<Map<String, dynamic>> users = await db.query(table);
     return users.map((u) => User.fromMap(u)).toList();
   }
+
   Future<List> getcount(List predictedData) async {
     Database db = await instance.database;
     var dbclient = await db;
-    List?  count = await dbclient.rawQuery("SELECT COUNT(*) FROM $table WHERE $columnModelData=$predictedData");
+    List? count = await dbclient.rawQuery(
+        "SELECT COUNT(*) FROM $table WHERE $columnModelData=$predictedData");
     return count;
   }
+
   Future<int> deleteAll() async {
     Database db = await instance.database;
     return await db.delete(table);

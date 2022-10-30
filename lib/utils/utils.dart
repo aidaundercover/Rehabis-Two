@@ -54,7 +54,7 @@ class Utils {
       //     await FlutterPhoneDirectCaller.callNumber(number);
       //   }
       // }
-
+      player.pause();
       String number = '+77079610043';
       await FlutterPhoneDirectCaller.callNumber(number);
     } else if (text.contains("write email")) {
@@ -63,11 +63,11 @@ class Utils {
       openEmail(body: body);
     } else if (text.contains("weather")) {
       await player.setAsset("assets/good_weather.mp3");
-      player.play();
+      await player.play();
     } else if (text.contains("i feel bad")) {
       await player.setAsset("assets/give_up.mp3");
 
-      player.play();
+      await player.play();
     } else if (text.contains("medication")) {
       try {
         DatabaseReference ref = FirebaseDatabase.instance.ref("LR");
@@ -75,7 +75,6 @@ class Utils {
         await ref.set(5);
       } catch (e) {
         Fluttertoast.showToast(msg: 'Error occured');
-        
       }
     } else if (text.contains("open")) {
       final url = _getTextAfterCommand(text: text, command: "open");
@@ -88,7 +87,7 @@ class Utils {
     } else if (text.contains("what is app")) {
       await player.setAsset("assets/about.mp3");
 
-      player.play();
+      await player.play();
     }
     // else if (text.contains(Command.call)) {}
   }

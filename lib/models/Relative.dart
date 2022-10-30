@@ -8,7 +8,7 @@ class Relative {
     // ignore: unnecessary_cast
     return {
       'number': this.number,
-      'relaion' : this.relation
+      'relation' : this.relation
     } as Map<String, dynamic>;
   }
 }

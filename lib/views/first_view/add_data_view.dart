@@ -1,10 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:rehabis/globalVars.dart';
-import 'package:rehabis/views/first_view/set_up_voice.dart';
-import 'package:rehabis/views/main/home.dart';
+import 'package:rehabis/views/first_view/set_contacts.dart';
 import 'package:rehabis/widgets/slider_fv.dart';
 
 class AddDataView extends StatefulWidget {
@@ -107,7 +104,7 @@ class _AddDataViewState extends State<AddDataView> {
           }
 
           Navigator.of(context).push(
-              MaterialPageRoute(builder: (context) => SetVoiceAssistant()));
+              MaterialPageRoute(builder: (context) => SetNotificationsView()));
         },
         child: Padding(
           padding: EdgeInsets.only(right: width * 0.04),

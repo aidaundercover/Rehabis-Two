@@ -6,7 +6,6 @@ import 'package:rehabis/models/user_model.dart';
 import 'package:rehabis/services/authentication.dart';
 import 'package:rehabis/services/camera_service.dart';
 import 'package:rehabis/services/facenet_service.dart';
-import 'package:rehabis/views/first_view/select_your_weak.dart';
 import 'package:rehabis/widgets/app_button.dart';
 import 'app_text_field.dart';
 

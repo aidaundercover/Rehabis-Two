@@ -96,7 +96,7 @@ class _ExercisesChartState extends State<ExercisesChart> {
                 }),
           ),
           StreamBuilder(
-              stream: ref.child('Users/$iinGlobal/Trainings/').onValue,
+              stream: ref.child('Users/651219300068/Trainings/').onValue,
               builder: (context, AsyncSnapshot<DatabaseEvent> snapshot) {
                 if (snapshot.hasData) {
                   final myTrainings = Map<String, dynamic>.from(

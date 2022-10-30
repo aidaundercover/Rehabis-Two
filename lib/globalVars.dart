@@ -1,13 +1,21 @@
 // ignore: file_names
-import 'package:flutter/material.dart' show Color;
+import 'package:flutter/material.dart' show Color, TextStyle;
 import 'package:rehabis/models/Relative.dart';
 import 'package:rehabis/views/main/calendar.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
+final bodyTextStyle = TextStyle(
+  fontSize: 14.r,
+  height: 1.6,
+);
 
 String prediction = "None";
 double value = 0.01;
 
 bool isLoggedIn = false;
 Map<DateTime, List<Event>> selectedEvents = {};
+
+int nftDelay = 3;
 
 /// Personal data ///
 String nameGlobal = "Имя Фамилия";
@@ -27,7 +35,17 @@ double bmiGlobal = 0;
 
 //Voice Over
 
-List<String> all = ["call", "write email", "open", "go to", "hello", "What is app", "weather", "i feel bad", "medication"];
+List<String> all = [
+  "call",
+  "write email",
+  "open",
+  "go to",
+  "hello",
+  "What is app",
+  "weather",
+  "i feel bad",
+  "medication"
+];
 
 // COLOR SCHEME //
 Color primaryColor = const Color.fromRGBO(204, 101, 255, 1.0);

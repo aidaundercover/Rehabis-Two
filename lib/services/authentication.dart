@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rehabis/globalVars.dart';
 import 'package:rehabis/main.dart';
+import 'package:rehabis/database/database.dart';
 import 'package:rehabis/views/auth/sign_in.dart';
 import 'package:rehabis/views/first_view/select_your_weak.dart';
 
 class Auth {
-
   static void signUp(BuildContext context, TextEditingController name,
       TextEditingController iin) async {
     nameGlobal = name.text;
@@ -41,7 +41,7 @@ class Auth {
           'level': 0,
         }
       },
-      "Events" : {},
+      "Events": {},
       // "Relatives" : {
       //   '1' : {
       //     'relation' : "None",
@@ -75,10 +75,8 @@ class Auth {
       strokeTypeGlobal = user['MedicalData']['StrokeType'];
     });
 
-
-
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const Main()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const Main()));
   }
 
   static void signOut(BuildContext context) {

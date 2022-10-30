@@ -1,14 +1,16 @@
 import 'package:avatar_glow/avatar_glow.dart';
-import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:lottie/lottie.dart';
 import 'package:rehabis/globalVars.dart';
-import 'package:rehabis/models/Relative.dart';
 import 'package:rehabis/services/speech_api.dart';
 import 'package:rehabis/utils/utils.dart';
 import 'package:rehabis/widgets/slider_fv.dart';
 import 'package:rehabis/widgets/substring_highlight.dart';
+import 'dart:math';
+import 'package:rxdart/rxdart.dart';
+import 'package:flutter/services.dart';
+import 'package:audio_session/audio_session.dart';
 
 import '../../globalVars.dart';
 
@@ -19,7 +21,7 @@ class Voice extends StatefulWidget {
   State<Voice> createState() => _Voice();
 }
 
-class _Voice extends State<Voice> {
+class _Voice extends State<Voice> with WidgetsBindingObserver {
   String text = "Hello!";
   bool isListening = false;
 
@@ -27,26 +29,31 @@ class _Voice extends State<Voice> {
 
   @override
   void initState() {
+
     player = AudioPlayer();
+    isListening = false;
 
     // relatives = {};
+    //ambiguate(WidgetsBinding.instance)!.addObserver(this);
 
     super.initState();
+  }
 
-    // FirebaseDatabase.instance
-    //     .ref("User/$iinGlobal/Realtives")
-    //     .onValue
-    //     .listen((event) {
-    //   var myR = Map<String, dynamic>.from(
-    //       event.snapshot.value as Map<dynamic, dynamic>);
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      // Release the player's resources when not in use. We use "stop" so that
+      // if the app resumes later, it will still remember what position to
+      // resume from.
+      player.stop();
+    }
+  }
 
-    //   myR.forEach((key, value) => setState(() {
-    //         final nextMarker = Map<String, dynamic>.from(value);
-    //         relatives.add(Relative(
-    //             relation: nextMarker['relation'],
-    //             number: nextMarker["number"]));
-    //       }));
-    // });
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    player.dispose();
   }
 
   @override
@@ -109,7 +116,7 @@ class _Voice extends State<Voice> {
               MediaQuery.of(context).orientation == Orientation.portrait
                   ? SizedBox(
                       width: width * 0.42,
-                      child: Lottie.asset('assets/voice.json',
+                      child: Lottie.asset('assets/lottie/voice.json',
                           animate: isListening))
                   : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       SizedBox(

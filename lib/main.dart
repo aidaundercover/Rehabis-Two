@@ -45,10 +45,8 @@ class MyApp extends StatefulWidget {
 
 FaceNetService _faceNetService = FaceNetService.faceNetService;
 MLKitService _mlKitService = MLKitService();
-bool loading = false;
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     super.initState();
@@ -63,24 +61,14 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return !loading
-        ? MaterialApp(
-            // scaffoldMessengerKey: scaffoldMessengerKey,
-            debugShowCheckedModeBanner: false,
-            home: isLoggedIn ? Main() : FirstView())
-        : CircularProgressIndicator(
-            color: secondPrimaryColor,
-          );
+    return MaterialApp(
+        // scaffoldMessengerKey: scaffoldMessengerKey,
+        debugShowCheckedModeBanner: false,
+        home: FirstView());
   }
 }
 
 void startup() async {
-  _setLoading(bool l) {
-    loading = l;
-  }
-
-  _setLoading(true);
-
   /// takes the front camera
   cameraDescription = cameras.firstWhere(
     (CameraDescription camera) =>
@@ -91,8 +79,6 @@ void startup() async {
   await _faceNetService.loadModel();
   //  await _dataBaseService.loadDB();
   _mlKitService.initialize();
-
-  _setLoading(false);
 }
 
 class Main extends StatefulWidget {

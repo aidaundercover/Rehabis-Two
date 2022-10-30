@@ -62,6 +62,7 @@ class SignInState extends State<SignIn> {
   //   widget.dependOnInheritedWidgetOfExactType();
   // }
 
+  
   @override
   void initState() {
     // TODO: implement initState
@@ -69,6 +70,17 @@ class SignInState extends State<SignIn> {
       _start();
     
   }
+
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  // if (state == AppLifecycleState.resumed) {
+  //   _cameraService.cameraController != null
+  //       ? _initializeControllerFuture =_cameraService.cameraController.initialize();
+  //       : null; //on pause camera is disposed, so we need to call again "issue is only for android"
+  // }
+
+  
+
 
   @override
   Widget build(BuildContext context) {
