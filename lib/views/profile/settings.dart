@@ -58,6 +58,7 @@ class _SettingsState extends State<Settings> {
     var height = MediaQuery.of(context).size.height;
 
     return Scaffold(
+      backgroundColor: backgroundColor,
       body: NestedScrollView(
           headerSliverBuilder: (context, innerBoxIsScrolled) => [
                 SliverAppBar(
@@ -315,7 +316,7 @@ class _Voice extends State<Voice> {
 
           if (!isListening) {
             Future.delayed(Duration(milliseconds: 500), () {
-              Utils.scanText(text, player);
+              Utils.scanText(text, player, context);
             });
           }
         },

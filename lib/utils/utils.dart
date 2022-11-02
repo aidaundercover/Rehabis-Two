@@ -1,10 +1,13 @@
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:rehabis/globalVars.dart';
+import 'package:rehabis/video_call/call.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utils {
@@ -39,33 +42,37 @@ class Utils {
     }
   }
 
-  static Future<void> scanText(String rawText, AudioPlayer player) async {
+  static Future<void> scanText(
+      String rawText, AudioPlayer player, BuildContext context) async {
     final text = rawText.toLowerCase();
 
     if (text.contains("hello")) {
-      await player.setAsset("assets/hello.mp3");
+      await player.setAsset("assets/sound/hello.mp3");
 
       player.play();
     }
     if (text.contains("call")) {
-      // for (int i = 0; i < relatives.length; i++) {
-      //   if (text.contains("call ${relatives.elementAt(i).relation}")) {
-      //     String number = relatives.elementAt(i).number; //set the number here
-      //     await FlutterPhoneDirectCaller.callNumber(number);
-      //   }
-      // }
-      player.pause();
-      String number = '+77079610043';
-      await FlutterPhoneDirectCaller.callNumber(number);
+      for (int i = 0; i < relatives.length; i++) {
+        if (text.contains("call ${relatives.elementAt(i).relation}")) {
+          String number = relatives.elementAt(i).number; //set the number here
+          await FlutterPhoneDirectCaller.callNumber(number);
+        }
+      }
+      // player.pause();
+      // String number = '+77079610043';
+      // await FlutterPhoneDirectCaller.callNumber(number);
     } else if (text.contains("write email")) {
       final body = _getTextAfterCommand(text: text, command: "write email");
 
       openEmail(body: body);
     } else if (text.contains("weather")) {
-      await player.setAsset("assets/good_weather.mp3");
+      await player.setAsset("assets/sound/good_weather.mp3");
       await player.play();
+    } else if (text.contains("video")) {
+      Navigator.of(context).push(
+          MaterialPageRoute(builder: (context) => VideoCallPageOficial()));
     } else if (text.contains("i feel bad")) {
-      await player.setAsset("assets/give_up.mp3");
+      await player.setAsset("assets/sound/ggive_up.mp3");
 
       await player.play();
     } else if (text.contains("medication")) {
@@ -85,7 +92,7 @@ class Utils {
 
       openLink(url: url);
     } else if (text.contains("what is app")) {
-      await player.setAsset("assets/about.mp3");
+      await player.setAsset("assets/sound/about.mp3");
 
       await player.play();
     }

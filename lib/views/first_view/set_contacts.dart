@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter_contacts/contact.dart';
 import 'package:flutter_contacts/flutter_contacts.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:rehabis/widgets/contact_card_first_view.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
@@ -115,34 +116,40 @@ class _SetNotificationsViewState extends State<SetNotificationsView> {
                       width: width * 0.5,
                     ),
                   ),
-                  relatives.isNotEmpty
-                      ? StatefulBuilder(
-                        builder: (context, setState) =>
-                        SizedBox(
-                            height: relatives.length*76,
-                            child: ListView.builder(
-                                itemCount: relatives.length,
-                                itemBuilder: (context, i) {
-                                
-                                  return contactCard(
-                                      width,
-                                      i + 1,
-                                      relatives.elementAt(i).number,
-                                      relatives.elementAt(i).relation);
-                                }),
-                          )
-                      )
-                      : Container(
-                          width: width * 0.7,
-                          child: Text(
-                            'Adding emergency contacts will give you the ability to contact them via phone/video call, anytime just by voice command',
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black.withOpacity(0.8),
-                                fontSize: 23,
-                                fontFamily: 'Inter'),
-                          ),
-                        ),
+                  StreamBuilder(
+                      stream: FirebaseDatabase.instance
+                          .ref('Users/$iinGlobal')
+                          .onValue,
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return relatives.isNotEmpty
+                              ? SizedBox(
+                                  height: relatives.length * 76,
+                                  child: ListView.builder(
+                                      itemCount: relatives.length,
+                                      itemBuilder: (context, i) {
+                                        return contactCard(
+                                            width,
+                                            i + 1,
+                                            relatives.elementAt(i).number,
+                                            relatives.elementAt(i).relation);
+                                      }),
+                                )
+                              : Container(
+                                  width: width * 0.7,
+                                  child: Text(
+                                    'Adding emergency contacts will give you the ability to contact them via phone/video call, anytime just by voice command',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                        color: Colors.black.withOpacity(0.8),
+                                        fontSize: 23,
+                                        fontFamily: 'Inter'),
+                                  ),
+                                );
+                        }
+                        return CircularPercentIndicator(
+                            radius: 50, progressColor: primaryColor);
+                      }),
                   SizedBox(
                     height: 24,
                   ),

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:firebase_database/firebase_database.dart';
 import "package:flutter/material.dart";
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rehabis/database/database.dart';
 import 'package:rehabis/globalVars.dart';
 import 'package:rehabis/main.dart';
 import 'package:rehabis/views/auth/sign_in.dart';
@@ -112,20 +114,19 @@ class _ProfileMainState extends State<ProfileMain> {
                         Positioned(
                           top: height * 0.04,
                           left: width * 0.32,
-                          child: avatarPath.isEmpty ? CircleAvatar(
-                            backgroundColor: Colors.white,
-                            radius: width * 0.1,
-                            child: Image.asset(
+                          child: avatarPath.isEmpty
+                              ? CircleAvatar(
+                                  backgroundColor: Colors.white,
+                                  radius: width * 0.1,
+                                  child: Image.asset(
                                     "assets/robot_neutral.png",
                                     height: width * 0.18,
-                                  )
-                          ) : CircleAvatar(
-                            backgroundColor: Colors.white,
+                                  ))
+                              : CircleAvatar(
+                                  backgroundColor: Colors.white,
                                   radius: width * 0.1,
-                            backgroundImage: FileImage(
-                                    File(avatarPath)
-                                  ),
-                          ),
+                                  backgroundImage: FileImage(File(avatarPath)),
+                                ),
                         )
                       ],
                     ),
@@ -296,9 +297,8 @@ class _ProfileMainState extends State<ProfileMain> {
                 strokeTypeGlobal = '';
                 weightGlobal = 0;
                 heightGlobal = 0;
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) =>
-                        FirstView()));
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => FirstView()));
               },
               child: Padding(
                 padding: const EdgeInsets.only(left: 30.0),
@@ -313,6 +313,30 @@ class _ProfileMainState extends State<ProfileMain> {
                     ),
                     Text(
                       "Sign Out",
+                      style: TextStyle(color: Colors.grey, fontSize: 15),
+                    )
+                  ],
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                DatabaseHelper.instance.deleteAll();
+                Fluttertoast.showToast(msg: 'Database was cleared');
+              },
+              child: Padding(
+                padding: const EdgeInsets.only(left: 30.0),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.clear,
+                      color: Colors.grey,
+                    ),
+                    SizedBox(
+                      width: 6,
+                    ),
+                    Text(
+                      "Clear Database",
                       style: TextStyle(color: Colors.grey, fontSize: 15),
                     )
                   ],

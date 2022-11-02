@@ -80,7 +80,7 @@ class _GloveOneState extends State<GloveOne> {
   void initState() {
     // TODO: implement initState
 
-    DatabaseReference starCountRef = FirebaseDatabase.instance.ref('LR/');
+    DatabaseReference starCountRef = FirebaseDatabase.instance.ref('coordinates/');
     starCountRef.onValue.listen((DatabaseEvent event) {
       final data = event.snapshot.value;
       updateStarCount(data);

@@ -5,7 +5,7 @@ import 'package:rehabis/views/main/calendar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 final bodyTextStyle = TextStyle(
-  fontSize: 14.r,
+  fontSize: 14,
   height: 1.6,
 );
 
@@ -44,7 +44,8 @@ List<String> all = [
   "What is app",
   "weather",
   "i feel bad",
-  "medication"
+  "medication",
+  'video'
 ];
 
 // COLOR SCHEME //

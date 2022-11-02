@@ -29,26 +29,16 @@ class _Voice extends State<Voice> with WidgetsBindingObserver {
 
   @override
   void initState() {
-
     player = AudioPlayer();
-    isListening = false;
+    print('initilized autoplayer');
 
-    // relatives = {};
-    //ambiguate(WidgetsBinding.instance)!.addObserver(this);
+    isListening = false;
+    print(isListening);
 
     super.initState();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
-      // Release the player's resources when not in use. We use "stop" so that
-      // if the app resumes later, it will still remember what position to
-      // resume from.
-      player.stop();
-    }
-  }
-
+  
   @override
   void dispose() {
     // TODO: implement dispose
@@ -121,7 +111,7 @@ class _Voice extends State<Voice> with WidgetsBindingObserver {
                   : Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       SizedBox(
                           width: width * 0.4,
-                          child: Lottie.asset('assets/voice.json',
+                          child: Lottie.asset('assets/lottie/voice.json',
                               animate: isListening)),
                       SizedBox(width: width * 0.05),
                       SizedBox(
@@ -174,12 +164,12 @@ class _Voice extends State<Voice> with WidgetsBindingObserver {
 
   Future toggleRecording() => SpeechApi.toggleRecording(
         onResult: (text) => setState(() => this.text = text),
-        onListening: (isListening) {
-          setState(() => this.isListening = isListening);
+        onListening: (listen) {
+          setState(() => this.isListening = listen);
 
-          if (!isListening) {
+          if (!listen) {
             Future.delayed(Duration(milliseconds: 500), () {
-              Utils.scanText(text, player);
+              Utils.scanText(text, player, context);
             });
           }
         },

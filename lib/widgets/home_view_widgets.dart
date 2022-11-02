@@ -78,6 +78,7 @@ Widget appBar(double width, double height, BuildContext context) {
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
+        actions: [],
       ),
       Container(
           width: width * 0.88,

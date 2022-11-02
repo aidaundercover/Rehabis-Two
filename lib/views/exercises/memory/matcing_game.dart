@@ -80,7 +80,7 @@ class _MatchingGameState extends State<MatchingGame> {
         final seconds = twoDigits(duration.inSeconds.remainder(60));
 
         uploadExercise(
-            'None', points, '$minutes : $seconds', 'Memory Game', "Memory", 1);
+            'None', (points/100).toInt(), '$minutes : $seconds', 'Memory Game', "Memory", 1);
 
         showDialog(
             context: (context),

@@ -2,7 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:rehabis/globalVars.dart';
 import 'package:rehabis/nft/nft_maket_main.dart';
-import 'package:rehabis/video_call/index.dart';
+import 'package:rehabis/video_call/call.dart';
+import 'package:rehabis/views/first_view/select_your_weak.dart';
 import 'package:rehabis/widgets/home_view_widgets.dart';
 
 class HomePage extends StatefulWidget {
@@ -44,20 +45,7 @@ class _HomePageState extends State<HomePage> {
                         },
                         child: appBar(width, height, context)),
                     exercises(width, height),
-                    TextButton(
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const IndexPage()));
-                      },
-                      child: Container(
-                        width: 300,
-                        height: 55,
-                        child: Text(
-                          'VIDEO CALL ',
-                          style: TextStyle(color: primaryColor),
-                        ),
-                      ),
-                    ),
+                    
                     recomendations(width, context),
                   ],
                 ),

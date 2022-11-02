@@ -21,8 +21,10 @@ TextEditingController bmi = TextEditingController(
 late FixedExtentScrollController controller;
 int selectedAge = bornDateGlobal.isEmpty
     ? 50
-    : DateTime.now().year -
-        int.parse(bornDateGlobal[0]+bornDateGlobal[1])>25 ? int.parse("19" +bornDateGlobal[0]+bornDateGlobal[1]) : int.parse("20" +bornDateGlobal[0]+bornDateGlobal[1]);
+    : DateTime.now().year - int.parse(bornDateGlobal[0] + bornDateGlobal[1]) >
+            25
+        ? int.parse("19" + bornDateGlobal[0] + bornDateGlobal[1])
+        : int.parse("20" + bornDateGlobal[0] + bornDateGlobal[1]);
 
 //buttons//
 bool isMPressed = false;
@@ -221,99 +223,106 @@ class _TestForPredictionState extends State<TestForPrediction> {
                 const SizedBox(
                   height: 18,
                 ),
-                  genderGlobal.isEmpty ? Container(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("Gender", style: titleStyle),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Container(
-                        decoration: BoxDecoration(
-                            color: Colors.grey.shade100,
-                            borderRadius: BorderRadius.circular(15)),
-                        padding: EdgeInsets.only(top: 20, bottom: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                genderGlobal.isEmpty
+                    ? Container(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    genderGlobal = 'male';
-                                    isMPressed = !isMPressed;
+                            Text("Gender", style: titleStyle),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.grey.shade100,
+                                  borderRadius: BorderRadius.circular(15)),
+                              padding: EdgeInsets.only(top: 20, bottom: 20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          genderGlobal = 'male';
+                                          isMPressed = !isMPressed;
 
-                                    if (isMPressed == true) {
-                                      isFPressed = false;
-                                    }
-                                  });
-                                },
-                                child: SizedBox(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      isMPressed
-                                          ? Image.asset("assets/male.png")
-                                          : Image.asset("assets/male_grey.png"),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        "Male",
-                                        style: TextStyle(
-                                            fontWeight: isMPressed
-                                                ? FontWeight.bold
-                                                : FontWeight.w400,
-                                            fontFamily: "Intel",
-                                            fontSize: 14),
-                                      )
-                                    ],
-                                  ),
-                                )),
-                            GestureDetector(
-                                onTap: () {
-                                  setState(() {
-                                    genderGlobal = 'female';
-                                    isFPressed = !isFPressed;
+                                          if (isMPressed == true) {
+                                            isFPressed = false;
+                                          }
+                                        });
+                                      },
+                                      child: SizedBox(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            isMPressed
+                                                ? Image.asset("assets/male.png")
+                                                : Image.asset(
+                                                    "assets/male_grey.png"),
+                                            const SizedBox(height: 10),
+                                            Text(
+                                              "Male",
+                                              style: TextStyle(
+                                                  fontWeight: isMPressed
+                                                      ? FontWeight.bold
+                                                      : FontWeight.w400,
+                                                  fontFamily: "Intel",
+                                                  fontSize: 14),
+                                            )
+                                          ],
+                                        ),
+                                      )),
+                                  GestureDetector(
+                                      onTap: () {
+                                        setState(() {
+                                          genderGlobal = 'female';
+                                          isFPressed = !isFPressed;
 
-                                    if (isFPressed == true) {
-                                      isMPressed = false;
-                                    }
-                                  });
-                                },
-                                child: SizedBox(
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      isFPressed
-                                          ? Image.asset("assets/female.png")
-                                          : Image.asset(
-                                              "assets/female_grey.png"),
-                                      const SizedBox(height: 10),
-                                      Text(
-                                        "Female",
-                                        style: TextStyle(
-                                            fontWeight: isFPressed
-                                                ? FontWeight.bold
-                                                : FontWeight.w400,
-                                            fontFamily: "Intel",
-                                            fontSize: 14),
-                                      )
-                                    ],
-                                  ),
-                                ))
+                                          if (isFPressed == true) {
+                                            isMPressed = false;
+                                          }
+                                        });
+                                      },
+                                      child: SizedBox(
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            isFPressed
+                                                ? Image.asset(
+                                                    "assets/female.png")
+                                                : Image.asset(
+                                                    "assets/female_grey.png"),
+                                            const SizedBox(height: 10),
+                                            Text(
+                                              "Female",
+                                              style: TextStyle(
+                                                  fontWeight: isFPressed
+                                                      ? FontWeight.bold
+                                                      : FontWeight.w400,
+                                                  fontFamily: "Intel",
+                                                  fontSize: 14),
+                                            )
+                                          ],
+                                        ),
+                                      ))
+                                ],
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 18,
+                            ),
                           ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 18,
-                      ),
-                    ],
-                  ),
-                ) : Container(),
+                      )
+                    : Container(),
 
                 Text("Age", style: titleStyle),
                 const SizedBox(
@@ -697,23 +706,35 @@ class _TestForPredictionState extends State<TestForPrediction> {
                 const SizedBox(
                   height: 10,
                 ),
-                 heightGlobal == 0 && weightGlobal == 0
+                heightGlobal == 0 && weightGlobal == 0
                     ? Row(
-                  children: [
-                    Text("You can calculate your BMI ",
-                        style: TextStyle(fontSize: 13, color: Colors.grey)),
-                    GestureDetector(
-                      onTap: () {},
-                      child: Text("here",
-                          style: TextStyle(
-                            fontSize: 13,
-                            decoration: TextDecoration.underline,
-                            color: Colors.grey,
-                            fontWeight: FontWeight.bold,
-                          )),
-                    )
-                  ],
-                ) : Container(),
+                        children: [
+                          Text("You can calculate your BMI ",
+                              style:
+                                  TextStyle(fontSize: 13, color: Colors.grey)),
+                          GestureDetector(
+                            onTap: () {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return Container(
+                                      child: Column(children: [
+                                        
+                                      ]),
+                                    );
+                                  });
+                            },
+                            child: Text("here",
+                                style: TextStyle(
+                                  fontSize: 13,
+                                  decoration: TextDecoration.underline,
+                                  color: Colors.grey,
+                                  fontWeight: FontWeight.bold,
+                                )),
+                          )
+                        ],
+                      )
+                    : Container(),
                 const SizedBox(
                   height: 70,
                 ),
@@ -848,7 +869,7 @@ class _TestForPredictionState extends State<TestForPrediction> {
 Future predict(BuildContext context) async {
   if (genderGlobal == "none") {
     Fluttertoast.showToast(msg: "Gender wasn't chosen!");
-  } else if (bp.text.isEmpty && bmiGlobal==0) {
+  } else if (bp.text.isEmpty && bmiGlobal == 0) {
     Fluttertoast.showToast(msg: "Arterial BP wasn't folled in!");
   } else if (isSmoker == "unknown") {
     Fluttertoast.showToast(msg: "Smoking status wasn't filled in!");
@@ -901,7 +922,7 @@ Future predict(BuildContext context) async {
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             child: Container(
-              height: 450,
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 50),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
                   color: Colors.white,
@@ -912,11 +933,11 @@ Future predict(BuildContext context) async {
                   ]),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(left: 20.0),
                     child: Text("Medical conclusion:",
+                        textAlign: TextAlign.start,
                         style: TextStyle(
                             fontFamily: 'Inter',
                             fontSize: 20,
